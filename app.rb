@@ -53,12 +53,13 @@ get("/dice/5/4") do
   erb(:five_four)
 end
 
-get("/dynamic/:alice/6") do
-  @num_dice = params.fetch("alice")
+get("/dice/:alice/:zebra") do
+  @num_dice = params.fetch("alice").to_i
+  @num_roll = params.fetch("zebra").to_i
 
   @rolls = []
    @num_dice.times do
-     die = rand(1..6)
+     die = rand(1..@num_roll)
 
      @rolls.push(die)
    end
